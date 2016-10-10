@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>邮票锯齿边框实现 | rockets1131的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="背景在实现抵用券样式的时候，需要实现类似于邮票的锯齿边框效果，如下图：
+之前的实现方式是通过锯齿的png图作为border然后重复作为实现。这样做的缺点是：
+
+配色需要与抵用券的背景颜色保持一致，可扩展性较差。
+锯齿的半径固定，不同分辨率的客户端下，显示效果不一致，适配性较弱。
+
+有没有方法能够直接用css样式直接实现呢？
+初步思路初步思路就是在背景的边框上每隔一段间距画圆，圆的圆心位于边框上,就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="邮票锯齿边框实现">
+<meta property="og:url" content="http://yoursite.com/2016/08/03/stamp/index.html">
+<meta property="og:site_name" content="rockets1131的博客">
+<meta property="og:description" content="背景在实现抵用券样式的时候，需要实现类似于邮票的锯齿边框效果，如下图：
+之前的实现方式是通过锯齿的png图作为border然后重复作为实现。这样做的缺点是：
+
+配色需要与抵用券的背景颜色保持一致，可扩展性较差。
+锯齿的半径固定，不同分辨率的客户端下，显示效果不一致，适配性较弱。
+
+有没有方法能够直接用css样式直接实现呢？
+初步思路初步思路就是在背景的边框上每隔一段间距画圆，圆的圆心位于边框上,就">
+<meta property="og:image" content="http://yoursite.com/css/images/page/stamp.jpg">
+<meta property="og:updated_time" content="2016-09-12T09:10:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="邮票锯齿边框实现">
+<meta name="twitter:description" content="背景在实现抵用券样式的时候，需要实现类似于邮票的锯齿边框效果，如下图：
+之前的实现方式是通过锯齿的png图作为border然后重复作为实现。这样做的缺点是：
+
+配色需要与抵用券的背景颜色保持一致，可扩展性较差。
+锯齿的半径固定，不同分辨率的客户端下，显示效果不一致，适配性较弱。
+
+有没有方法能够直接用css样式直接实现呢？
+初步思路初步思路就是在背景的边框上每隔一段间距画圆，圆的圆心位于边框上,就">
+<meta name="twitter:image" content="http://yoursite.com/css/images/page/stamp.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="rockets1131的博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">rockets1131的博客</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/head.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/head.png" />
+            <h2 id="name">rockets1131</h2>
+            <h3 id="title">rockets1131的博客</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/rockets1131/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                4
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                2
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-stamp" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            邮票锯齿边框实现
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/08/03/stamp/">
+            <time datetime="2016-08-03T03:20:58.000Z" itemprop="datePublished">2016-08-03</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/CSS3/">CSS3</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在实现抵用券样式的时候，需要实现类似于邮票的锯齿边框效果，如下图：<br><img src="css/images/page/stamp.jpg" style="width:300px"></p>
+<p>之前的实现方式是通过锯齿的png图作为border然后重复作为实现。这样做的缺点是：</p>
+<ul>
+<li>配色需要与抵用券的背景颜色保持一致，可扩展性较差。</li>
+<li>锯齿的半径固定，不同分辨率的客户端下，显示效果不一致，适配性较弱。</li>
+</ul>
+<p>有没有方法能够直接用css样式直接实现呢？</p>
+<h2 id="初步思路"><a href="#初步思路" class="headerlink" title="初步思路"></a>初步思路</h2><p>初步思路就是在背景的边框上每隔一段间距画圆，圆的圆心位于边框上,就可以实现邮票锯齿效果。</p>
+<h3 id="radial-gradient-实现圆点背景"><a href="#radial-gradient-实现圆点背景" class="headerlink" title="radial-gradient 实现圆点背景"></a>radial-gradient 实现圆点背景</h3><p><code>radial-gradient</code> 径向渐变是从一个点向四周的颜色渐变。W3C标准语法如下：</p>
+<blockquote>
+<p>radial-gradient( [ [ &lt; shape &gt; || &lt; size &gt; ] [ at &lt; position &gt; ]? , | at &lt; position &gt; ,]? &lt; color-stop &gt; [ , &lt; color-stop &gt; ]+);</p>
+</blockquote>
+<h4 id="主要参数："><a href="#主要参数：" class="headerlink" title="主要参数："></a>主要参数：</h4><p><code>position</code><br>position与background-position或者transform-origin类似。如缺省，默认为中心点。其值主要有以下几种：</p>
+<ul>
+<li>&lt; length &gt;：用长度值指定径向渐变圆心的横坐标或纵坐标。可以为负值。</li>
+<li>&lt; percentage &gt;：用百分比指定径向渐变圆心的横坐标或纵坐标。可以为负值。</li>
+<li>left：设置左边为径向渐变圆心的横坐标值。</li>
+<li>center：设置中间为径向渐变圆心的横坐标值或纵坐标。</li>
+<li>right：设置右边为径向渐变圆心的横坐标值。</li>
+<li>top：设置顶部为径向渐变圆心的纵标值。</li>
+<li>bottom：设置底部为径向渐变圆心的纵标值。</li>
+</ul>
+<p><code>shape</code><br>渐变的形状。圆形”circle”或椭圆形”ellipse”。默认值为椭圆。</p>
+<ul>
+<li>circle：如果”size”和”length”大小相等，那么径向渐变是一个圆形。</li>
+<li>ellipse：如果”size”和”length”大小不相等，那么径向渐变是一个椭圆形。</li>
+</ul>
+<p><code>size</code><br>渐变的尺寸大小。</p>
+<p><code>color-stop</code><br>表示确定位置的固定色值，包含一个&lt; color &gt;值加上可选的位置值（相对虚拟渐变射线的&lt; percentage &gt;或者&lt; length &gt;长度值）。 百分比值0%，或者长度值0，表示渐变中心点；百分比值100%表示渐变射线与边缘形状相交的点。 其间的百分比值线性对应渐变射线上的点。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">300px</span>;</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">radial-gradient</span>(white, red);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>实现效果</p>
+<div id="example1"></div>
+
+<p>“size”缺省值为farthest-corner，即渐变到达最远边框。</p>
+<p>当颜色的终止值和下一个颜色初始值相同，或下一个颜色初始值为0时，即可画出圆形。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span>&#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">radial-gradient</span>(white 50px, red 0);</div><div class="line">    <span class="attribute">background-size</span>: <span class="number">300px</span> <span class="number">300px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>实现效果</p>
+<div id="example2"></div>
+
+<p>利用这种方式，在一个边框重复，即可实现邮票锯齿边框效果。我们设置：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">radial-gradient</span>(white 5px, transparent 0);</div><div class="line">    <span class="attribute">background-size</span>: <span class="number">20px</span> <span class="number">20px</span>;</div><div class="line">    <span class="attribute">background-position</span>: -<span class="number">10px</span> <span class="number">0</span>;</div><div class="line">    <span class="attribute">background-repeat</span>: repeat-y;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>实现效果</p>
+<div id="example3"></div>
+
+<p>其中圆点半径为 “5px” ，锯齿图片大小为 “background-size 20px 20px” ，并向左偏移 “10px” ，在y轴重复，即可实现左边边框的锯齿效果。</p>
+<h2 id="进一步扩展"><a href="#进一步扩展" class="headerlink" title="进一步扩展"></a>进一步扩展</h2><p>目前主要实现了一边锯齿的效果。那么，如何扩展实现4边锯齿效果呢？<br>我们需要解决一个问题：如何在布局大小不确定的情况下绘制右边以及下边边框？</p>
+<h3 id="CSS3的calc"><a href="#CSS3的calc" class="headerlink" title="CSS3的calc()"></a>CSS3的calc()</h3><p>calc()可以理解为一个函数function。calc是英文单词calculate(计算)的缩写，是css3的一个新增的功能，用于动态给元素的border、margin、padding、font-size和width等属性设置动态值。<br>你可以给一个div元素，使用百分比、em、px和rem单位值计算出其宽度或者高度，比如说“width:calc(50% + 2em)”，这样一来你就不用考虑元素div的宽度值到底是多少，而把这个烦人的任务交由浏览器去计算。</p>
+<h3 id="通过calc-计算右边及下边边框的位置"><a href="#通过calc-计算右边及下边边框的位置" class="headerlink" title="通过calc()计算右边及下边边框的位置"></a>通过calc()计算右边及下边边框的位置</h3><p>布局大小不确定的情况下，我们需要确定右边以及下边边框的 <code>background-position</code> 。<br>由于当前的 <code>background-size</code> 为20px。因此右边的边框的 <code>background-position</code> 的x轴需增加10px；而下边边框的 <code>background-position</code> 的y轴需增加10px。<br>因此，右边和下边边框的 <code>background-position</code> 的计算公式分别为 <code>calc(100%+10px) 0</code>, <code>0 calc(100%+10px)</code> 。<br>从而得到自适应布局大小的邮票边框样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">    <span class="attribute">background</span>: red;</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">radial-gradient</span>(white 5px, transparent 0),</div><div class="line">                      <span class="built_in">radial-gradient</span>(white 5px, transparent 0),</div><div class="line">                      <span class="built_in">radial-gradient</span>(white 5px, transparent 0),</div><div class="line">                      <span class="built_in">radial-gradient</span>(white 5px, transparent 0);</div><div class="line">    <span class="attribute">background-size</span>: <span class="number">20px</span> <span class="number">20px</span>;</div><div class="line">    <span class="attribute">background-position</span>: -<span class="number">10px</span> <span class="number">0</span>, <span class="built_in">calc</span>(100%+10px) <span class="number">0</span>, <span class="number">0</span> -<span class="number">10px</span>, <span class="number">0</span> <span class="built_in">calc</span>(100%+10px);</div><div class="line">    <span class="attribute">background-repeat</span>: repeat-y, repeat-y, repeat-x, repeat-x;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最终效果为：</p>
+<div id="example4"></div>
+
+
+
+
+
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2016/08/03/stamp/" data-id="ciszph3s20001gl9kyzj4i6ov" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2016/08/03/stamp/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2016/08/03/stamp/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/10/09/regular-expressions/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    正则表达式学习
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/06/17/Markdown-rule/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Markdown语法的简要规则</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/10/09/regular-expressions/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/10/09/regular-expressions/" class="title">正则表达式学习</a></p>
+                            <p class="item-date"><time datetime="2016-10-09T07:24:32.000Z" itemprop="datePublished">2016-10-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/03/stamp/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/03/stamp/" class="title">邮票锯齿边框实现</a></p>
+                            <p class="item-date"><time datetime="2016-08-03T03:20:58.000Z" itemprop="datePublished">2016-08-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/17/Markdown-rule/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/17/Markdown-rule/" class="title">Markdown语法的简要规则</a></p>
+                            <p class="item-date"><time datetime="2016-06-17T05:54:32.000Z" itemprop="datePublished">2016-06-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/17/hello-world/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/17/hello-world/" class="title">Hello World</a></p>
+                            <p class="item-date"><time datetime="2016-06-17T03:30:44.000Z" itemprop="datePublished">2016-06-17</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 Linsanity<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://yoursite.com/2016/08/03/stamp/';
+        
+        this.page.identifier = 'stamp';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+    
+        <script src="/vendor/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-share.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-video.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

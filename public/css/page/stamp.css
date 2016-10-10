@@ -1,0 +1,29 @@
+#example1 {
+  width: 200px;
+  height: 200px;
+  background-image: radial-gradient(#fff, #f00);
+}
+#example2 {
+  width: 200px;
+  height: 200px;
+  background-image: radial-gradient(#fff 50px, #f00 0);
+  backgound-size: 300px 300px;
+}
+#example3 {
+  width: 200px;
+  height: 200px;
+  background: #f00;
+  background-image: radial-gradient(#fff 5px, transparent 0);
+  background-size: 20px 20px;
+  background-position: -10px 0;
+  background-repeat: repeat-y;
+}
+#example4 {
+  width: 200px;
+  height: 200px;
+  background: #f00;
+  background-image: radial-gradient(#fff 5px, transparent 0), radial-gradient(#fff 5px, transparent 0), radial-gradient(#fff 5px, transparent 0), radial-gradient(#fff 5px, transparent 0);
+  background-size: 20px 20px;
+  background-position: -10px 0, calc(100% + 10px) 0, 0 -10px, 0 calc(100% + 10px);
+  background-repeat: repeat-y, repeat-y, repeat-x, repeat-x;
+}

@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>正则表达式学习 | rockets1131的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="预定义的特殊字符
+
+
+字符
+正则
+描述
+
+
+
+
+ \t
+/\t/
+制表符
+
+
+ \n
+/\n/
+制表符
+
+
+ \r
+/\r/
+回车符
+
+
+ \f
+/\f/
+换页符
+
+
+ \a
+/\a/
+alert字符
+
+
+ \e
+/\e/
+escape字符
+
+
+ \cX
+/\cX/
+与X相对应的控制字符
+
+
+ \b
+/\b/
+与回退字符
+
+
+ \v
+/\v/
+垂直制表符
+
+
+ \0
+/\0/
+空字符
+
+
+
+字符类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式学习">
+<meta property="og:url" content="http://yoursite.com/2016/10/09/regular-expressions/index.html">
+<meta property="og:site_name" content="rockets1131的博客">
+<meta property="og:description" content="预定义的特殊字符
+
+
+字符
+正则
+描述
+
+
+
+
+ \t
+/\t/
+制表符
+
+
+ \n
+/\n/
+制表符
+
+
+ \r
+/\r/
+回车符
+
+
+ \f
+/\f/
+换页符
+
+
+ \a
+/\a/
+alert字符
+
+
+ \e
+/\e/
+escape字符
+
+
+ \cX
+/\cX/
+与X相对应的控制字符
+
+
+ \b
+/\b/
+与回退字符
+
+
+ \v
+/\v/
+垂直制表符
+
+
+ \0
+/\0/
+空字符
+
+
+
+字符类">
+<meta property="og:updated_time" content="2016-10-09T09:41:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式学习">
+<meta name="twitter:description" content="预定义的特殊字符
+
+
+字符
+正则
+描述
+
+
+
+
+ \t
+/\t/
+制表符
+
+
+ \n
+/\n/
+制表符
+
+
+ \r
+/\r/
+回车符
+
+
+ \f
+/\f/
+换页符
+
+
+ \a
+/\a/
+alert字符
+
+
+ \e
+/\e/
+escape字符
+
+
+ \cX
+/\cX/
+与X相对应的控制字符
+
+
+ \b
+/\b/
+与回退字符
+
+
+ \v
+/\v/
+垂直制表符
+
+
+ \0
+/\0/
+空字符
+
+
+
+字符类">
+    
+
+    
+        <link rel="alternate" href="/" title="rockets1131的博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">rockets1131的博客</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/head.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/head.png" />
+            <h2 id="name">rockets1131</h2>
+            <h3 id="title">rockets1131的博客</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/rockets1131/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                4
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                2
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/ppoffice/hexo-theme-icarus" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-regular-expressions" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            正则表达式学习
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/10/09/regular-expressions/">
+            <time datetime="2016-10-09T07:24:32.000Z" itemprop="datePublished">2016-10-09</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <h2 id="预定义的特殊字符"><a href="#预定义的特殊字符" class="headerlink" title="预定义的特殊字符"></a>预定义的特殊字符</h2><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>正则</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> \t</td>
+<td>/\t/</td>
+<td>制表符</td>
+</tr>
+<tr>
+<td> \n</td>
+<td>/\n/</td>
+<td>制表符</td>
+</tr>
+<tr>
+<td> \r</td>
+<td>/\r/</td>
+<td>回车符</td>
+</tr>
+<tr>
+<td> \f</td>
+<td>/\f/</td>
+<td>换页符</td>
+</tr>
+<tr>
+<td> \a</td>
+<td>/\a/</td>
+<td>alert字符</td>
+</tr>
+<tr>
+<td> \e</td>
+<td>/\e/</td>
+<td>escape字符</td>
+</tr>
+<tr>
+<td> \cX</td>
+<td>/\cX/</td>
+<td>与X相对应的控制字符</td>
+</tr>
+<tr>
+<td> \b</td>
+<td>/\b/</td>
+<td>与回退字符</td>
+</tr>
+<tr>
+<td> \v</td>
+<td>/\v/</td>
+<td>垂直制表符</td>
+</tr>
+<tr>
+<td> \0</td>
+<td>/\0/</td>
+<td>空字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h2><h3 id="简单类"><a href="#简单类" class="headerlink" title="简单类"></a>简单类</h3><p>我们可以用[]把字符括起来,让[]整体对应一个字符,表示其中一个字符。如<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/[abc]/.test(<span class="string">"a"</span>); <span class="comment">//true</span></div><div class="line">/[abc]/.test(<span class="string">"b"</span>); <span class="comment">//true</span></div><div class="line">/[abc]/.test(<span class="string">"c"</span>); <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<h3 id="负向类"><a href="#负向类" class="headerlink" title="负向类"></a>负向类</h3><p>在[]里，前面加个元字符进行取反，表示匹配不在括号里面的字符。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/[^abc]/.test(<span class="string">"a"</span>); <span class="comment">//false</span></div><div class="line">/[^abc]/.test(<span class="string">"6"</span>); <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<h3 id="范围类"><a href="#范围类" class="headerlink" title="范围类"></a>范围类</h3><p>有时匹配的东西过多，而且类型又相同，我们在中间加横线表示范围。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/[a-f]/.test(<span class="string">"b"</span>); <span class="comment">//true</span></div><div class="line">/[a-f]/.test(<span class="string">"k"</span>); <span class="comment">//false</span></div></pre></td></tr></table></figure></p>
+<h3 id="组合类"><a href="#组合类" class="headerlink" title="组合类"></a>组合类</h3><p>用中括号匹配不同类型的单个字符。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/[a-m1<span class="number">-5</span>]/.test(<span class="string">"a"</span>); <span class="comment">//true</span></div><div class="line">/[a-m1<span class="number">-5</span>]/.test(<span class="string">"r"</span>); <span class="comment">//false</span></div></pre></td></tr></table></figure></p>
+<h3 id="预定义类"><a href="#预定义类" class="headerlink" title="预定义类"></a>预定义类</h3><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>等同于</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> .</td>
+<td>[^\n\r]</td>
+<td>除了换行和回车之外的任意字符</td>
+</tr>
+<tr>
+<td> \d</td>
+<td>[0-9]</td>
+<td>数字字符</td>
+</tr>
+<tr>
+<td> \D</td>
+<td>[^0-9]</td>
+<td>非数字字符</td>
+</tr>
+<tr>
+<td> \s</td>
+<td>[\t\n\x0B\f\r]</td>
+<td>空白字符</td>
+</tr>
+<tr>
+<td> \S</td>
+<td>[^ \t\n\x0B\f\r]</td>
+<td>非空白字符</td>
+</tr>
+<tr>
+<td> \w</td>
+<td>[a-zA-Z_0-9]</td>
+<td>单词字符(所有的字母)</td>
+</tr>
+<tr>
+<td> \W</td>
+<td>[^a-zA-Z_0-9]</td>
+<td>非单词字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h2><table>
+<thead>
+<tr>
+<th>代码</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> ?</td>
+<td>软性量词</td>
+<td>出现零次或一次</td>
+</tr>
+<tr>
+<td> *</td>
+<td>软性量词</td>
+<td>出现零次或多次(任意次)</td>
+</tr>
+<tr>
+<td> +</td>
+<td>软性量词</td>
+<td>出现一次或多次（至少一次)</td>
+</tr>
+<tr>
+<td> {n}</td>
+<td>硬性量词</td>
+<td>对应零次或者n次</td>
+</tr>
+<tr>
+<td> {n,m}</td>
+<td>软性量词</td>
+<td>出现n到m次</td>
+</tr>
+<tr>
+<td> {n,}</td>
+<td>软性量词</td>
+<td>至少出现n次(+的升级版)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>/[\u4e00-\u9fa5]/用于匹配单个汉字。</p>
+</blockquote>
+<h3 id="贪婪量词"><a href="#贪婪量词" class="headerlink" title="贪婪量词"></a>贪婪量词</h3><p>上面提到的所有简单量词。匹配整个字符串，如果匹配不了，再从后向前去掉一个字符，再检查字符串是否匹配，不断重复直到长度为零。</p>
+<h3 id="隋性量词"><a href="#隋性量词" class="headerlink" title="隋性量词"></a>隋性量词</h3><p>在简单量词后加问号。从前面匹配第一个字符，如果匹配不了，再向后添加一个,其工作方式与贪婪量词相反。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> re1 = <span class="regexp">/.*bbb/g</span>;<span class="comment">//贪婪</span></div><div class="line"><span class="keyword">var</span> re2 = <span class="regexp">/.*?bbb/g</span>;<span class="comment">//惰性</span></div><div class="line"></div><div class="line">re1.test(<span class="string">"abbbaabbbaaabbbb1234"</span>); <span class="comment">//true</span></div><div class="line"><span class="string">"abbbaabbbaaabbbb1234"</span>.match(re1); <span class="comment">//abbbaabbbaaabbbb</span></div><div class="line"> </div><div class="line">re2.test(<span class="string">"abbbaabbbaaabbbb1234"</span>); <span class="comment">//true</span></div><div class="line"><span class="string">"abbbaabbbaaabbbb1234"</span>.match(re2); <span class="comment">//abbb,aabbb,aaabbb</span></div></pre></td></tr></table></figure></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2016/10/09/regular-expressions/" data-id="ciu3gbnhi00002v9knd8fbu2o" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://yoursite.com/2016/10/09/regular-expressions/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://yoursite.com/2016/10/09/regular-expressions/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2016/08/03/stamp/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">邮票锯齿边框实现</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/10/09/regular-expressions/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/10/09/regular-expressions/" class="title">正则表达式学习</a></p>
+                            <p class="item-date"><time datetime="2016-10-09T07:24:32.000Z" itemprop="datePublished">2016-10-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/08/03/stamp/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/08/03/stamp/" class="title">邮票锯齿边框实现</a></p>
+                            <p class="item-date"><time datetime="2016-08-03T03:20:58.000Z" itemprop="datePublished">2016-08-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/17/Markdown-rule/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/17/Markdown-rule/" class="title">Markdown语法的简要规则</a></p>
+                            <p class="item-date"><time datetime="2016-06-17T05:54:32.000Z" itemprop="datePublished">2016-06-17</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/17/hello-world/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/06/17/hello-world/" class="title">Hello World</a></p>
+                            <p class="item-date"><time datetime="2016-06-17T03:30:44.000Z" itemprop="datePublished">2016-06-17</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS3/">CSS3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 Linsanity<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://yoursite.com/2016/10/09/regular-expressions/';
+        
+        this.page.identifier = 'regular-expressions';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'hexo-theme-icarus' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+    
+        <script src="/vendor/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-share.min.js"></script>
+        <script src="/vendor/lightgallery/js/lg-video.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
