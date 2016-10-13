@@ -81,3 +81,47 @@ re1.test("abbbaabbbaaabbbb1234"); //true
 re2.test("abbbaabbbaaabbbb1234"); //true
 "abbbaabbbaaabbbb1234".match(re2); //abbb,aabbb,aaabbb
 ```
+## 捕获
+匹配并且记住匹配项。括号被称为捕获括号。
+``` js
+/(dog){2}/.test("dogdog"); //true
+```
+### 反向引用
+反向引用标识由正则表达式中的匹配组捕获的子字符串。每个反向引用都由一个编号或名称来标识，并通过“\编号”表示法进行引用。
+``` js
+var color = "#990000";
+/#(\d+)/.test(color);
+RegExp.$1 ;//990000
+/(dog)\1/.test("dogdog" //true
+```
+### 非捕获性分组
+
+非捕获性分组，不会创建反向引用，在分组的左括号的后面紧跟一个问号和冒号。
+``` js
+var color = "#990000";
+/#(?:\d+)/.test(color);
+RegExp.$1; //""
+```
+### 正向肯定
+x(?=y) 匹配'x'仅仅当'x'后面不跟着'y'。
+``` js
+/Jack(?=Sprat)/.exec('JackSprat'); //Jack
+```
+### 正向否定
+x(?!y) 匹配'x'仅仅当'x'后面不跟着'y'。
+``` js
+/\d+(?!\.)/.exec('3.141'); //141
+```
+### 候选
+x|y 匹配‘x’或者‘y’。
+``` js
+/green|red/.exec('green apple'); //green
+```
+
+## 边界
+正则 | 名称 | 描述
+--- | --- | ---
+^ | 开头 | 匹配输入的开始。
+$ | 结尾	 | 匹配输入的结束
+\b | 单词边界 | 指[a-zA-Z_0-9]之外的字符
+\B | 非单词边界 | 匹配一个非单词边界
