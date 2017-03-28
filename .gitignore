@@ -2,4 +2,4 @@
 /public/*
 /.idea/*
 /.deploy_git/*
-db.json
+/db.json
